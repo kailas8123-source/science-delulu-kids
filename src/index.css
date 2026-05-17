@@ -1,0 +1,754 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 270 50% 98%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 330 100% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 7%;
+    --input: 240 5.9% 90%;
+    --ring: 330 100% 59%;
+    --radius: 1.375rem;
+
+    /* Custom Science Platform Colors */
+    --page-bg: #F8F4FF;
+    --accent-magenta: #FF2D8D;
+    --tile-physics: #C9FF6B;
+    --tile-chemistry: #F2F0FF;
+    --tile-biology: #8B5CFF;
+    --tile-earth: #D0F5FF;
+    --tile-space: #121212;
+    --text-primary: #121212;
+    --text-secondary: #6B6B6B;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka', sans-serif;
+    letter-spacing: 0;
+  }
+}
+
+@layer components {
+  .app-root {
+    min-height: 100vh;
+    background: var(--page-bg);
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    z-index: 30000;
+    display: flex;
+    width: min(calc(100vw - 24px), 1180px);
+    transform: translateX(-50%);
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border: 3px solid #121212;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+    padding: 8px 10px;
+    box-shadow: 0 7px 0 #121212;
+    backdrop-filter: blur(14px);
+  }
+
+  .site-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: max-content;
+    color: #121212;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .site-logo img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .site-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    padding: 8px 11px;
+    color: #121212;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .site-nav-link:hover,
+  .site-nav-link.active {
+    border-color: #121212;
+    background: #C9FF6B;
+  }
+
+  .detail-page {
+    min-height: 100vh;
+    padding: 112px 6vw 56px;
+    background: var(--page-bg);
+  }
+
+  .detail-shell {
+    position: relative;
+    z-index: 2;
+    width: min(1120px, 100%);
+    margin: 0 auto;
+  }
+
+  .detail-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    border: 2.5px solid #121212;
+    border-radius: 999px;
+    background: white;
+    padding: 9px 14px;
+    box-shadow: 0 5px 0 #121212;
+    color: #121212;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+  }
+
+  .detail-hero,
+  .detail-section,
+  .topic-detail-hero,
+  .detail-card {
+    border: 3px solid #121212;
+    border-radius: 18px;
+    box-shadow: 0 8px 0 #121212;
+  }
+
+  .detail-hero {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: clamp(24px, 4vw, 48px);
+    color: #121212;
+  }
+
+  .detail-hero.tile-biology,
+  .detail-hero.tile-space,
+  .category-link-card.tile-biology,
+  .category-link-card.tile-space {
+    color: white;
+  }
+
+  .detail-eyebrow {
+    width: fit-content;
+    border: 2px solid #121212;
+    border-radius: 999px;
+    background: white;
+    padding: 5px 10px;
+    color: #121212;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .detail-hero h1,
+  .topic-detail-hero h1 {
+    max-width: 850px;
+    color: currentColor;
+    font-size: clamp(2.35rem, 6vw, 4.9rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .detail-hero p,
+  .topic-detail-hero p,
+  .detail-section p,
+  .detail-section li {
+    max-width: 740px;
+    color: #4b4b4b;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.65;
+  }
+
+  .detail-hero.tile-biology p,
+  .detail-hero.tile-space p {
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .category-link-card {
+    display: grid;
+    min-height: 136px;
+    align-content: space-between;
+    padding: 18px;
+    color: #121212;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+  }
+
+  .category-link-card span {
+    font-size: clamp(1.1rem, 2vw, 1.55rem);
+    line-height: 1.05;
+  }
+
+  .category-link-card small {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+  }
+
+  .topic-index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+
+  .detail-card {
+    overflow: hidden;
+    background: white;
+    color: #121212;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 13px 0 #121212;
+  }
+
+  .detail-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-bottom: 3px solid #121212;
+  }
+
+  .detail-card div {
+    display: grid;
+    gap: 7px;
+    padding: 16px;
+  }
+
+  .detail-card span {
+    color: #FF2D8D;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .detail-card h2,
+  .detail-section h2 {
+    color: #121212;
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .detail-card p {
+    color: #6B6B6B;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .topic-detail-page {
+    display: grid;
+    gap: 22px;
+  }
+
+  .topic-detail-hero {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.92fr) minmax(280px, 1fr);
+    overflow: hidden;
+    background: white;
+  }
+
+  .topic-detail-hero img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    border-right: 3px solid #121212;
+  }
+
+  .topic-detail-hero > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 44px);
+  }
+
+  .detail-section {
+    display: grid;
+    gap: 14px;
+    background: white;
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .two-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .detail-section ol,
+  .detail-section ul {
+    display: grid;
+    gap: 10px;
+    padding-left: 1.25rem;
+  }
+
+  .accent-section {
+    background: #F2F0FF;
+  }
+
+  .experiment-detail-card {
+    background: #C9FF6B;
+  }
+
+  /* Delulu Tile System */
+  .delulu-tile {
+    border-radius: 22px;
+    border: 3px solid #121212;
+    box-shadow: 0 10px 0 #121212;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.25s ease;
+    will-change: transform;
+  }
+  
+  .delulu-tile:hover {
+    transform: translateY(-6px) rotate(0.5deg);
+    box-shadow: 0 16px 0 #121212;
+  }
+  
+  .delulu-tile:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #121212;
+  }
+  
+  /* Category-specific tile colors */
+  .tile-physics {
+    background-color: var(--tile-physics);
+  }
+  
+  .tile-chemistry {
+    background-color: var(--tile-chemistry);
+  }
+  
+  .tile-biology {
+    background-color: var(--tile-biology);
+    color: white;
+  }
+  
+  .tile-earth {
+    background-color: var(--tile-earth);
+  }
+  
+  .tile-space {
+    background-color: var(--tile-space);
+    color: white;
+  }
+  
+  .tile-accent {
+    background-color: var(--accent-magenta);
+    color: white;
+  }
+  
+  .tile-white {
+    background-color: white;
+  }
+  
+  /* Pill button style */
+  .delulu-pill {
+    border-radius: 999px;
+    border: 2.5px solid #121212;
+    box-shadow: 0 6px 0 #121212;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .delulu-pill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 #121212;
+  }
+  
+  .delulu-pill:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #121212;
+  }
+  
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.06;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--page-bg);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #121212;
+    border-radius: 4px;
+  }
+  
+  /* Animation utilities */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 45, 141, 0.4); }
+    50% { box-shadow: 0 0 20px 10px rgba(255, 45, 141, 0.2); }
+  }
+  
+  .spin-slow {
+    animation: spinSlow 8s linear infinite;
+  }
+  
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+  }
+  
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  
+  /* Section pinned styling */
+  .pinned-section {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Topic row horizontal strip */
+  .topic-strip {
+    display: flex;
+    gap: 18px;
+    padding: 0 6vw;
+    align-items: center;
+    height: 100%;
+    will-change: transform;
+  }
+  
+  /* Label tile for category rows */
+  .label-tile {
+    width: 34vw;
+    height: 72vh;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .label-tile-text {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Topic card styling */
+  .topic-card {
+    width: 28vw;
+    height: 72vh;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .topic-card-image {
+    height: 55%;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 3px solid #121212;
+  }
+  
+  .topic-card-content {
+    padding: 16px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Voice narration button */
+  .voice-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2.5px solid #121212;
+    box-shadow: 0 4px 0 #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--accent-magenta);
+    color: white;
+  }
+  
+  .voice-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #121212;
+  }
+  
+  .voice-btn.playing {
+    animation: pulseGlow 1s ease-in-out infinite;
+  }
+  
+  /* Badge styling */
+  .badge-item {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #121212;
+    box-shadow: 0 6px 0 #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .badge-item.earned {
+    background: var(--tile-physics);
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  .badge-item.locked {
+    background: #e0e0e0;
+    transform: scale(0.9);
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
+  
+  /* Mascot peek */
+  .mascot-peek {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    z-index: 10;
+    transition: transform 0.3s ease;
+  }
+  
+  .mascot-peek:hover {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+  
+  /* Simulation container */
+  .sim-container {
+    border-radius: 18px;
+    border: 3px solid #121212;
+    box-shadow: 0 8px 0 #121212;
+    overflow: hidden;
+    background: white;
+  }
+  
+  /* Quiz option styling */
+  .quiz-option {
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: 2.5px solid #121212;
+    box-shadow: 0 4px 0 #121212;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  
+  .quiz-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #121212;
+    background: var(--tile-chemistry);
+  }
+  
+  .quiz-option.correct {
+    background: var(--tile-physics);
+    border-color: #4a9900;
+  }
+  
+  .quiz-option.wrong {
+    background: #ffe0e0;
+    border-color: #cc0000;
+  }
+  
+  /* Progress bar */
+  .progress-bar {
+    height: 12px;
+    border-radius: 999px;
+    border: 2px solid #121212;
+    background: white;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: var(--accent-magenta);
+    border-radius: 999px;
+    transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .site-nav {
+      top: 8px;
+      align-items: flex-start;
+      border-width: 2.5px;
+      border-radius: 16px;
+      padding: 7px;
+    }
+
+    .site-logo span {
+      display: none;
+    }
+
+    .site-nav-link {
+      min-height: 34px;
+      padding: 7px 9px;
+      font-size: 0.78rem;
+    }
+
+    .detail-page {
+      padding: 96px 4vw 42px;
+    }
+
+    .category-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .topic-detail-hero,
+    .two-column {
+      grid-template-columns: 1fr;
+    }
+
+    .topic-detail-hero img {
+      min-height: 260px;
+      border-right: 0;
+      border-bottom: 3px solid #121212;
+    }
+
+    .delulu-tile {
+      border-radius: 18px;
+      border-width: 2.5px;
+      box-shadow: 0 6px 0 #121212;
+    }
+    
+    .delulu-tile:hover {
+      box-shadow: 0 10px 0 #121212;
+    }
+    
+    .label-tile {
+      width: 60vw;
+      height: 50vh;
+    }
+    
+    .topic-card {
+      width: 75vw;
+      height: 60vh;
+    }
+    
+    .label-tile-text {
+      writing-mode: horizontal-tb;
+      font-size: 2rem;
+    }
+    
+    .topic-strip {
+      gap: 12px;
+      padding: 0 4vw;
+    }
+  }
+}
